@@ -3,8 +3,8 @@
 int main() {
     // ----------- Carta 1 -----------
     char estado1;
-    char codigo1[4];       // Ex: "A01" (3 caracteres + '\0')
-    char cidade1[50];      // Nome da cidade
+    char codigo1[4];
+    char cidade1[50];
     int populacao1;
     float area1;
     float pib1;
@@ -21,14 +21,14 @@ int main() {
 
     // ----------------- Entrada Carta 1 -----------------
     printf("=== Cadastro da Carta 1 ===\n");
-    printf("Digite o Estado: ");
+    printf("Digite o Estado (letra): ");
     scanf(" %c", &estado1);
 
     printf("Digite o Codigo da Carta (ex: A01): ");
-    scanf("%s", codigo1);
+    scanf("%3s", codigo1);
 
     printf("Digite o Nome da Cidade: ");
-    scanf(" %[^\n]", cidade1); // lê até o ENTER (permite nomes com espaço)
+    scanf(" %[^\n]", cidade1);
 
     printf("Digite a Populacao: ");
     scanf("%d", &populacao1);
@@ -42,14 +42,13 @@ int main() {
     printf("Digite o Numero de Pontos Turisticos: ");
     scanf("%d", &pontosTuristicos1);
 
-
     // ----------------- Entrada Carta 2 -----------------
     printf("\n=== Cadastro da Carta 2 ===\n");
-    printf("Digite o Estado: ");
+    printf("Digite o Estado (letra): ");
     scanf(" %c", &estado2);
 
     printf("Digite o Codigo da Carta (ex: B02): ");
-    scanf("%s", codigo2);
+    scanf("%3s", codigo2);
 
     printf("Digite o Nome da Cidade: ");
     scanf(" %[^\n]", cidade2);
@@ -66,26 +65,62 @@ int main() {
     printf("Digite o Numero de Pontos Turisticos: ");
     scanf("%d", &pontosTuristicos2);
 
+    // ----------------- Escolha de Categoria -----------------
+    int categoria;
+    printf("\nEscolha uma categoria para comparar:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turísticos\n");
+    printf("Digite o número da categoria: ");
+    scanf("%d", &categoria);
 
-    // ----------------- Saída Carta 1 -----------------
-    printf("\n\n=== Carta 1 ===\n");
-    printf("Estado: %c\n", estado1);
-    printf("Codigo: %s\n", codigo1);
-    printf("Nome da Cidade: %s\n", cidade1);
-    printf("Populacao: %d\n", populacao1);
-    printf("Area: %.2f km²\n", area1);
-    printf("PIB: %.2f bilhoes de reais\n", pib1);
-    printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos1);
+    // ----------------- Comparação -----------------
+    printf("\n=== Resultado da Comparação ===\n");
+    switch (categoria) {
+        case 1:
+            printf("Categoria: População\n");
+            if (populacao1 > populacao2)
+                printf("Vencedora: %s (Carta 1)\n", cidade1);
+            else if (populacao2 > populacao1)
+                printf("Vencedora: %s (Carta 2)\n", cidade2);
+            else
+                printf("Empate!\n");
+            break;
 
-    // ----------------- Saída Carta 2 -----------------
-    printf("\n=== Carta 2 ===\n");
-    printf("Estado: %c\n", estado2);
-    printf("Codigo: %s\n", codigo2);
-    printf("Nome da Cidade: %s\n", cidade2);
-    printf("Populacao: %d\n", populacao2);
-    printf("Area: %.2f km²\n", area2);
-    printf("PIB: %.2f bilhoes de reais\n", pib2);
-    printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos2);
+        case 2:
+            printf("Categoria: Área\n");
+            if (area1 > area2)
+                printf("Vencedora: %s (Carta 1)\n", cidade1);
+            else if (area2 > area1)
+                printf("Vencedora: %s (Carta 2)\n", cidade2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 3:
+            printf("Categoria: PIB\n");
+            if (pib1 > pib2)
+                printf("Vencedora: %s (Carta 1)\n", cidade1);
+            else if (pib2 > pib1)
+                printf("Vencedora: %s (Carta 2)\n", cidade2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 4:
+            printf("Categoria: Pontos Turísticos\n");
+            if (pontosTuristicos1 > pontosTuristicos2)
+                printf("Vencedora: %s (Carta 1)\n", cidade1);
+            else if (pontosTuristicos2 > pontosTuristicos1)
+                printf("Vencedora: %s (Carta 2)\n", cidade2);
+            else
+                printf("Empate!\n");
+            break;
+
+        default:
+            printf("Opção inválida!\n");
+    }
 
     return 0;
 }
